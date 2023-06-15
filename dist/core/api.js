@@ -20,7 +20,11 @@ export class API {
             }
             const { body, method } = options;
             let response;
-            if ((typeof (body) === 'string') || (body instanceof Uint8Array) || (body instanceof ArrayBuffer) || (body instanceof File)) {
+            if ((typeof (body) === 'string') ||
+                (body instanceof Uint8Array) ||
+                (body instanceof ArrayBuffer) ||
+                ((typeof (File) !== 'undefined') &&
+                    (body instanceof File))) {
                 response = yield fetch(url, { body, method });
             }
             else if (body != null) {
