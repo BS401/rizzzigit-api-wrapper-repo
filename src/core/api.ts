@@ -47,7 +47,9 @@ export class API {
 
     const result = await response.json()
     if (result.status !== 200) {
-      throw new Error(`HTTP ${result.status as string}`)
+      throw Object.assign(new Error(`HTTP ${result.status as string}`), {
+        data: result
+      })
     }
 
     return result
