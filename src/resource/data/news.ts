@@ -1,6 +1,6 @@
 import type { NewsManager, NewsContentResolvable } from '../manager/news.js'
 import { BaseResource } from './base.js'
-import type { FileResource } from './file.js'
+import { type PictureResource } from './picture.js'
 
 export class NewsResource extends BaseResource<NewsResource, NewsManager> {
   public constructor (manager: NewsManager, id: string, data: Record<string, unknown>) {
@@ -17,7 +17,7 @@ export class NewsResource extends BaseResource<NewsResource, NewsManager> {
 
   public get title (): string { return this.#data.title as string }
   public get thumbnailId (): string { return this.#data.thumbnail as string }
-  public async getThumbnail (): Promise<FileResource> { return await this.manager.main.files.get(this.thumbnailId) as FileResource }
+  public async getThumbnail (): Promise<PictureResource> { return (await this.manager.main.pictures.get(this.thumbnailId) as PictureResource) }
   public get contents (): NewsContentResolvable[] { return this.#data.contents as NewsContentResolvable[] }
 
   public toJSON (): Record<string, any> {

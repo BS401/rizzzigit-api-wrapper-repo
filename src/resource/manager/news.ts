@@ -1,5 +1,5 @@
-import type { FileResource } from '../data/file.js'
 import { NewsResource } from '../data/news.js'
+import type { PictureResource } from '../data/picture.js'
 import type { MainManager } from '../main.js'
 import { BaseManager } from './base.js'
 
@@ -24,7 +24,7 @@ export class NewsManager extends BaseManager<NewsResource, NewsManager> {
     return new NewsResource(this, data._id, data)
   }
 
-  public async create (title: string, thumbnail: FileResource, contents: Array<NewsTextContent | NewsImageContent | NewsLinkContent>): Promise<NewsResource> {
+  public async create (title: string, thumbnail: PictureResource, contents: Array<NewsTextContent | NewsImageContent | NewsLinkContent>): Promise<NewsResource> {
     const { data: { newsId } } = await this.main.client.api.request(this.generateURL(['n']), {
       method: 'PUT',
       body: { title, thumbnail: thumbnail.id, contents }
@@ -47,7 +47,7 @@ export interface NewsContent {
 export interface NewsImageContent extends NewsContent {
   contentType: NewsContentType.Image
 
-  url: string
+  pictureId: string
 }
 
 export interface NewsTextContent extends NewsContent {

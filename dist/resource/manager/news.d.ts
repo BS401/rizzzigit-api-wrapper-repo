@@ -1,12 +1,12 @@
-import type { FileResource } from '../data/file.js';
 import { NewsResource } from '../data/news.js';
+import type { PictureResource } from '../data/picture.js';
 import type { MainManager } from '../main.js';
 import { BaseManager } from './base.js';
 export declare class NewsManager extends BaseManager<NewsResource, NewsManager> {
     constructor(main: MainManager);
     list(offset?: number, length?: number): Promise<NewsResource[]>;
     get(id: string): Promise<NewsResource | null>;
-    create(title: string, thumbnail: FileResource, contents: Array<NewsTextContent | NewsImageContent | NewsLinkContent>): Promise<NewsResource>;
+    create(title: string, thumbnail: PictureResource, contents: Array<NewsTextContent | NewsImageContent | NewsLinkContent>): Promise<NewsResource>;
 }
 export declare enum NewsContentType {
     Image = 0,
@@ -19,7 +19,7 @@ export interface NewsContent {
 }
 export interface NewsImageContent extends NewsContent {
     contentType: NewsContentType.Image;
-    url: string;
+    pictureId: string;
 }
 export interface NewsTextContent extends NewsContent {
     contentType: NewsContentType.Text;

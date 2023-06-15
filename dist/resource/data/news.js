@@ -13,7 +13,7 @@ export class NewsResource extends BaseResource {
     get title() { return __classPrivateFieldGet(this, _NewsResource_data, "f").title; }
     get thumbnailId() { return __classPrivateFieldGet(this, _NewsResource_data, "f").thumbnail; }
     getThumbnail() {
-        return __awaiter(this, void 0, void 0, function* () { return yield this.manager.main.files.get(this.thumbnailId); });
+        return __awaiter(this, void 0, void 0, function* () { return yield this.manager.main.pictures.get(this.thumbnailId); });
     }
     get contents() { return __classPrivateFieldGet(this, _NewsResource_data, "f").contents; }
     toJSON() {
