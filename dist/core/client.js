@@ -25,8 +25,8 @@ export class Client {
         _Client_options.set(this, void 0);
         _Client_api.set(this, void 0);
         _Client_resources.set(this, void 0);
-        __classPrivateFieldSet(this, _Client_api, new API(this), "f");
         __classPrivateFieldSet(this, _Client_options, Object.assign({ baseUrl: 'http://10.0.0.13:8081' }, options), "f");
+        __classPrivateFieldSet(this, _Client_api, new API(this, __classPrivateFieldGet(this, _Client_options, "f").storage), "f");
         __classPrivateFieldSet(this, _Client_resources, new MainManager(this), "f");
     }
     get options() { return __classPrivateFieldGet(this, _Client_options, "f"); }

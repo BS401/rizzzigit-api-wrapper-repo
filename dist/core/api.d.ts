@@ -1,7 +1,7 @@
 import type { Client } from './client.js';
 export declare class API {
     #private;
-    constructor(client: Client);
+    constructor(client: Client, customLocalStorage?: Storage);
     request(url: URL, options: {
         body?: string | FileList[0] | Record<string, unknown>;
         method: 'POST' | 'PUT' | 'DELETE' | 'GET';

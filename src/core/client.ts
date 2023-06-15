@@ -3,6 +3,7 @@ import { API } from './api.js'
 
 export interface ClientOptions {
   baseUrl: string
+  storage?: Storage
 }
 
 export class Client {
@@ -31,13 +32,13 @@ export class Client {
   }
 
   public constructor (options?: Partial<ClientOptions>) {
-    this.#api = new API(this)
     this.#options = {
       baseUrl: 'http://10.0.0.13:8081',
 
       ...options
     }
 
+    this.#api = new API(this, this.#options.storage)
     this.#resources = new MainManager(this)
   }
 

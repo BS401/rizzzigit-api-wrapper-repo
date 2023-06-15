@@ -1,9 +1,9 @@
 import type { Client } from './client.js'
 
 export class API {
-  public constructor (client: Client) {
+  public constructor (client: Client, customLocalStorage?: Storage) {
     this.#client = client
-    this.#localStorage = localStorage
+    this.#localStorage = customLocalStorage ?? localStorage
   }
 
   #client: Client

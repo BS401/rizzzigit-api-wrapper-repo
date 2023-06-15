@@ -2,6 +2,7 @@ import { MainManager } from '../resource/main.js';
 import { API } from './api.js';
 export interface ClientOptions {
     baseUrl: string;
+    storage?: Storage;
 }
 export declare class Client {
     #private;

@@ -1,11 +1,11 @@
 var _API_client, _API_localStorage;
 import { __awaiter, __classPrivateFieldGet, __classPrivateFieldSet } from "tslib";
 export class API {
-    constructor(client) {
+    constructor(client, customLocalStorage) {
         _API_client.set(this, void 0);
         _API_localStorage.set(this, void 0);
         __classPrivateFieldSet(this, _API_client, client, "f");
-        __classPrivateFieldSet(this, _API_localStorage, localStorage, "f");
+        __classPrivateFieldSet(this, _API_localStorage, customLocalStorage !== null && customLocalStorage !== void 0 ? customLocalStorage : localStorage, "f");
     }
     request(url, options) {
         return __awaiter(this, void 0, void 0, function* () {
