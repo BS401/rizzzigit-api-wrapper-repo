@@ -29,7 +29,7 @@ export class API {
     const { body, method } = options
 
     let response: Response
-    if ((typeof (body) === 'string') || (body instanceof File)) {
+    if ((typeof (body) === 'string') || (body instanceof Uint8Array) || (body instanceof ArrayBuffer) || (body instanceof ArrayBuffer) || (body instanceof File)) {
       response = await fetch(url, { body, method })
     } else if (body != null) {
       const json = JSON.stringify(body)
