@@ -6,7 +6,7 @@ export class AuthenticationManager extends BaseManager<AuthenticationResource, A
   public constructor (main: MainManager) {
     super(main, 'Authentication')
 
-    this.#storage = localStorage
+    this.#storage = main.client.options.storage ?? localStorage
   }
 
   #storage: Storage

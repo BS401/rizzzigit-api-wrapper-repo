@@ -3,10 +3,11 @@ import { __awaiter, __classPrivateFieldGet, __classPrivateFieldSet } from "tslib
 import { BaseManager } from './base.js';
 export class AuthenticationManager extends BaseManager {
     constructor(main) {
+        var _a;
         super(main, 'Authentication');
         _AuthenticationManager_instances.add(this);
         _AuthenticationManager_storage.set(this, void 0);
-        __classPrivateFieldSet(this, _AuthenticationManager_storage, localStorage, "f");
+        __classPrivateFieldSet(this, _AuthenticationManager_storage, (_a = main.client.options.storage) !== null && _a !== void 0 ? _a : localStorage, "f");
     }
     isAuthorized() {
         return __awaiter(this, void 0, void 0, function* () {
