@@ -1,7 +1,7 @@
-import type { FileResource } from '../data/file'
-import { NewsResource } from '../data/news'
-import type { MainManager } from '../main'
-import { BaseManager } from './base'
+import type { FileResource } from '../data/file.js'
+import { NewsResource } from '../data/news.js'
+import type { MainManager } from '../main.js'
+import { BaseManager } from './base.js'
 
 export class NewsManager extends BaseManager<NewsResource, NewsManager> {
   public constructor (main: MainManager) {
@@ -62,3 +62,5 @@ export interface NewsLinkContent extends NewsContent {
   name: string
   link: string
 }
+
+export type NewsContentResolvable = NewsImageContent | NewsTextContent | NewsLinkContent

@@ -1,8 +1,8 @@
-import type { Client } from "../core/client";
-import { AuthenticationManager } from "./manager/authentication";
-import { FileManager } from "./manager/file";
-import { NewsManager } from "./manager/news";
-import { PictureManager } from "./manager/picture";
+import type { Client } from '../core/client.js'
+import { AuthenticationManager } from './manager/authentication.js'
+import { FileManager } from './manager/file.js'
+import { NewsManager } from './manager/news.js'
+import { PictureManager } from './manager/picture.js'
 
 export class MainManager {
   public constructor (client: Client) {

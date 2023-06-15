@@ -1,5 +1,5 @@
-import { MainManager } from '../resource/main'
-import { API } from './api'
+import { MainManager } from '../resource/main.js'
+import { API } from './api.js'
 
 export interface ClientOptions {
   baseUrl: string

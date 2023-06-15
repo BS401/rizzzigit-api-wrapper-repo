@@ -1,4 +1,4 @@
-import type { Client } from './client'
+import type { Client } from './client.js'
 
 export class API {
   public constructor (client: Client) {

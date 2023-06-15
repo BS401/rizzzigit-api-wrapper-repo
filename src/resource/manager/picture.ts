@@ -1,7 +1,7 @@
-import type { FileResource } from '../data/file'
-import { PictureResource } from '../data/picture'
-import type { MainManager } from '../main'
-import { BaseManager } from './base'
+import type { FileResource } from '../data/file.js'
+import { PictureResource } from '../data/picture.js'
+import type { MainManager } from '../main.js'
+import { BaseManager } from './base.js'
 
 export class PictureManager extends BaseManager<PictureResource, PictureManager> {
   public constructor (main: MainManager) {

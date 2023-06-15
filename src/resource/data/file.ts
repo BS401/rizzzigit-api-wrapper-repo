@@ -1,5 +1,5 @@
-import type { FileManager } from '../manager/file'
-import { BaseResource } from './base'
+import type { FileManager } from '../manager/file.js'
+import { BaseResource } from './base.js'
 
 export class FileResource extends BaseResource<FileResource, FileManager> {
   public constructor (manager: FileManager, id: string, data: Record<string, unknown>) {

@@ -1,6 +1,6 @@
-import type { AuthenticationResource } from '../data/authentication'
-import type { MainManager } from '../main'
-import { BaseManager } from './base'
+import type { AuthenticationResource } from '../data/authentication.js'
+import type { MainManager } from '../main.js'
+import { BaseManager } from './base.js'
 
 export class AuthenticationManager extends BaseManager<AuthenticationResource, AuthenticationManager> {
   public constructor (main: MainManager) {

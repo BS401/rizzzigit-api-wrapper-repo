@@ -1,4 +1,4 @@
-import type { BaseManager } from '../manager/base'
+import type { BaseManager } from '../manager/base.js'
 
 export abstract class BaseResource<R extends BaseResource<R, M>, M extends BaseManager<R, M>> {
   public constructor (manager: M, id: string, data: Record<string, unknown>) {

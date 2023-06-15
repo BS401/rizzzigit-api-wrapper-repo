@@ -1,5 +1,5 @@
-import type { BaseResource } from '../data/base'
-import type { MainManager } from '../main'
+import type { BaseResource } from '../data/base.js'
+import type { MainManager } from '../main.js'
 
 export abstract class BaseManager<R extends BaseResource<R, M>, M extends BaseManager<R, M>> {
   public constructor (main: MainManager, name: string) {
