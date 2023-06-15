@@ -11,7 +11,7 @@ export class FileManager extends BaseManager<FileResource, FileManager> {
 
   #main: MainManager
 
-  public async upload (file: File): Promise<FileResource> {
+  public async upload (file: File | ArrayBuffer): Promise<FileResource> {
     const { main: { client: { api } } } = this
 
     const { data: { tokenId } } = await api.request(this.generateURL(['f']), {

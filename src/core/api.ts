@@ -10,7 +10,7 @@ export class API {
   #localStorage: Storage
 
   public async request (url: URL, options: {
-    body?: string | FileList[0] | Record<string, unknown>
+    body?: string | FileList[0] | ArrayBuffer | Record<string, unknown>
     method: 'POST' | 'PUT' | 'DELETE' | 'GET'
     query?: Record<string, unknown>
   }): Promise<Record<string, any>> {
