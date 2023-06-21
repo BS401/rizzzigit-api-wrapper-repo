@@ -1,13 +1,15 @@
-var _AuthenticationManager_instances, _AuthenticationManager_storage, _AuthenticationManager_sessionId_get, _AuthenticationManager_sessionId_set;
+var _AuthenticationManager_instances, _AuthenticationManager_storage, _AuthenticationManager_events, _AuthenticationManager_sessionId_get, _AuthenticationManager_sessionId_set;
 import { __awaiter, __classPrivateFieldGet, __classPrivateFieldSet } from "tslib";
 import { BaseManager } from './base.js';
 export class AuthenticationManager extends BaseManager {
-    constructor(main) {
+    constructor(main, events) {
         var _a;
-        super(main, 'Authentication');
+        super(main, events, 'Authentication');
         _AuthenticationManager_instances.add(this);
         _AuthenticationManager_storage.set(this, void 0);
+        _AuthenticationManager_events.set(this, void 0);
         __classPrivateFieldSet(this, _AuthenticationManager_storage, (_a = main.client.options.storage) !== null && _a !== void 0 ? _a : localStorage, "f");
+        __classPrivateFieldSet(this, _AuthenticationManager_events, events, "f");
     }
     isAuthorized() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -44,6 +46,7 @@ export class AuthenticationManager extends BaseManager {
             }), {
                 method: 'POST'
             });
+            yield __classPrivateFieldGet(this, _AuthenticationManager_events, "f").emit('authChange');
         });
     }
     login(username, password) {
@@ -61,10 +64,11 @@ export class AuthenticationManager extends BaseManager {
                 body: { username, password }
             });
             __classPrivateFieldSet(this, _AuthenticationManager_instances, sessionId, "a", _AuthenticationManager_sessionId_set);
+            yield __classPrivateFieldGet(this, _AuthenticationManager_events, "f").emit('authChange');
         });
     }
 }
-_AuthenticationManager_storage = new WeakMap(), _AuthenticationManager_instances = new WeakSet(), _AuthenticationManager_sessionId_get = function _AuthenticationManager_sessionId_get() {
+_AuthenticationManager_storage = new WeakMap(), _AuthenticationManager_events = new WeakMap(), _AuthenticationManager_instances = new WeakSet(), _AuthenticationManager_sessionId_get = function _AuthenticationManager_sessionId_get() {
     return __classPrivateFieldGet(this, _AuthenticationManager_storage, "f").getItem('session-id');
 }, _AuthenticationManager_sessionId_set = function _AuthenticationManager_sessionId_set(id) {
     if (id == null) {

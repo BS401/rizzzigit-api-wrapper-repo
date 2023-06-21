@@ -2,8 +2,8 @@ import { __awaiter } from "tslib";
 import { PictureResource } from '../data/picture.js';
 import { BaseManager } from './base.js';
 export class PictureManager extends BaseManager {
-    constructor(main) {
-        super(main, 'Picture');
+    constructor(main, events) {
+        super(main, events, 'Picture');
     }
     list(offset, length) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -21,10 +21,14 @@ export class PictureManager extends BaseManager {
     }
     get(id) {
         return __awaiter(this, void 0, void 0, function* () {
+            const cached = this.getCache(id);
+            if (cached != null) {
+                return cached;
+            }
             const { data } = yield this.main.client.api.request(this.generateURL(['p', id]), {
                 method: 'GET'
             });
-            return new PictureResource(this, data._id, data);
+            return this.setCache(id, new PictureResource(this, data._id, data));
         });
     }
     create(file) {
@@ -36,6 +40,13 @@ export class PictureManager extends BaseManager {
                 }
             });
             return yield this.get(pictureId);
+        });
+    }
+    delete(picture) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.main.client.api.request(this.generateURL(['p', picture.id]), {
+                method: 'DELETE'
+            });
         });
     }
 }

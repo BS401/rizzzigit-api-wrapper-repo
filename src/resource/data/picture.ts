@@ -14,4 +14,6 @@ export class PictureResource extends BaseResource<PictureResource, PictureManage
   public get fileId (): string { return this.#data.fileId as string }
 
   public async getFile (): Promise<FileResource> { return await this.manager.main.files.get(this.fileId) as FileResource }
+
+  public async delete (): Promise<void> { await this.manager.delete(this) }
 }

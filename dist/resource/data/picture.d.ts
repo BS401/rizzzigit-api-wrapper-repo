@@ -6,4 +6,5 @@ export declare class PictureResource extends BaseResource<PictureResource, Pictu
     constructor(manager: PictureManager, id: string, data: Record<string, unknown>);
     get fileId(): string;
     getFile(): Promise<FileResource>;
+    delete(): Promise<void>;
 }

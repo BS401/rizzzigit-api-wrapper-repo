@@ -1,10 +1,11 @@
+import { type ClientEventEmitter } from '../../Wrapper.js'
 import { FileResource } from '../data/file.js'
 import type { MainManager } from '../main.js'
 import { BaseManager } from './base.js'
 
 export class FileManager extends BaseManager<FileResource, FileManager> {
-  public constructor (main: MainManager) {
-    super(main, 'File')
+  public constructor (main: MainManager, events: ClientEventEmitter) {
+    super(main, events, 'Picture')
 
     this.#main = main
   }
@@ -27,8 +28,20 @@ export class FileManager extends BaseManager<FileResource, FileManager> {
   }
 
   public async get (id: string): Promise<FileResource | null> {
+    const cached = this.getCache(id)
+
+    if (cached != null) {
+      return cached
+    }
+
     const data = await this.main.client.api.request(this.generateURL(['f', id]), { method: 'GET' })
 
-    return new FileResource(this, id, data)
+    return this.setCache(id, new FileResource(this, id, data))
+  }
+
+  public async delete (file: FileResource): Promise<void> {
+    await this.main.client.api.request(this.generateURL(['f', file.id]), {
+      method: 'DELETE'
+    })
   }
 }

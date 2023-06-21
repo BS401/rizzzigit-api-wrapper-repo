@@ -1,11 +1,12 @@
+import { type ClientEventEmitter } from '../../Wrapper.js'
 import { NewsResource } from '../data/news.js'
 import type { PictureResource } from '../data/picture.js'
 import type { MainManager } from '../main.js'
 import { BaseManager } from './base.js'
 
 export class NewsManager extends BaseManager<NewsResource, NewsManager> {
-  public constructor (main: MainManager) {
-    super(main, 'news')
+  public constructor (main: MainManager, events: ClientEventEmitter) {
+    super(main, events, 'Picture')
   }
 
   public async list (offset?: number, length?: number): Promise<NewsResource[]> {
@@ -15,6 +16,12 @@ export class NewsManager extends BaseManager<NewsResource, NewsManager> {
   }
 
   public async get (id: string): Promise<NewsResource | null> {
+    const cached = this.getCache(id)
+
+    if (cached != null) {
+      return cached
+    }
+
     const { main: { client: { options: { baseUrl }, api } } } = this
     const url = new URL(baseUrl)
 

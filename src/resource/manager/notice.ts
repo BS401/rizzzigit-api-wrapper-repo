@@ -1,10 +1,11 @@
+import { type ClientEventEmitter } from '../../Wrapper.js'
 import { NoticeResource } from '../data/notice.js'
 import { type MainManager } from '../main.js'
 import { BaseManager } from './base.js'
 
 export class NoticeManager extends BaseManager<NoticeResource, NoticeManager> {
-  public constructor (main: MainManager) {
-    super(main, 'Notice')
+  public constructor (main: MainManager, events: ClientEventEmitter) {
+    super(main, events, 'Picture')
   }
 
   public async list (offset: number, length: number): Promise<NoticeResource[]> {

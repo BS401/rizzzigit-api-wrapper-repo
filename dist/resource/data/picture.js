@@ -11,5 +11,8 @@ export class PictureResource extends BaseResource {
     getFile() {
         return __awaiter(this, void 0, void 0, function* () { return yield this.manager.main.files.get(this.fileId); });
     }
+    delete() {
+        return __awaiter(this, void 0, void 0, function* () { yield this.manager.delete(this); });
+    }
 }
 _PictureResource_data = new WeakMap();

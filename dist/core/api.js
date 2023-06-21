@@ -43,7 +43,7 @@ export class API {
             }
             const result = yield response.json();
             if (result.status !== 200) {
-                throw Object.assign(new Error(`HTTP ${result.status}`), {
+                throw Object.assign(new Error(result.error.message), {
                     data: result
                 });
             }

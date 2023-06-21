@@ -1,4 +1,4 @@
-import type { Client } from '../core/client.js'
+import type { Client, ClientEventEmitter } from '../core/client.js'
 import { AuthenticationManager } from './manager/authentication.js'
 import { FileManager } from './manager/file.js'
 import { NewsManager } from './manager/news.js'
@@ -6,13 +6,13 @@ import { NoticeManager } from './manager/notice.js'
 import { PictureManager } from './manager/picture.js'
 
 export class MainManager {
-  public constructor (client: Client) {
+  public constructor (client: Client, eventEmitter: ClientEventEmitter) {
     this.#client = client
-    this.#news = new NewsManager(this)
-    this.#files = new FileManager(this)
-    this.#pictures = new PictureManager(this)
-    this.#authentication = new AuthenticationManager(this)
-    this.#notices = new NoticeManager(this)
+    this.#news = new NewsManager(this, eventEmitter)
+    this.#files = new FileManager(this, eventEmitter)
+    this.#pictures = new PictureManager(this, eventEmitter)
+    this.#authentication = new AuthenticationManager(this, eventEmitter)
+    this.#notices = new NoticeManager(this, eventEmitter)
   }
 
   #client: Client

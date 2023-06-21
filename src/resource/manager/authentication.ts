@@ -1,15 +1,18 @@
+import { type ClientEventEmitter } from '../../Wrapper.js'
 import type { AuthenticationResource } from '../data/authentication.js'
 import type { MainManager } from '../main.js'
 import { BaseManager } from './base.js'
 
 export class AuthenticationManager extends BaseManager<AuthenticationResource, AuthenticationManager> {
-  public constructor (main: MainManager) {
-    super(main, 'Authentication')
+  public constructor (main: MainManager, events: ClientEventEmitter) {
+    super(main, events, 'Authentication')
 
     this.#storage = main.client.options.storage ?? localStorage
+    this.#events = events
   }
 
   #storage: Storage
+  #events: ClientEventEmitter
 
   get #sessionId (): string | null {
     return this.#storage.getItem('session-id')
@@ -62,6 +65,8 @@ export class AuthenticationManager extends BaseManager<AuthenticationResource, A
     }), {
       method: 'POST'
     })
+
+    await this.#events.emit('authChange')
   }
 
   public async login (username: string, password: string): Promise<void> {
@@ -79,5 +84,6 @@ export class AuthenticationManager extends BaseManager<AuthenticationResource, A
     })
 
     this.#sessionId = sessionId
+    await this.#events.emit('authChange')
   }
 }

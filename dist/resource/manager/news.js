@@ -2,8 +2,8 @@ import { __awaiter } from "tslib";
 import { NewsResource } from '../data/news.js';
 import { BaseManager } from './base.js';
 export class NewsManager extends BaseManager {
-    constructor(main) {
-        super(main, 'news');
+    constructor(main, events) {
+        super(main, events, 'Picture');
     }
     list(offset, length) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -13,6 +13,10 @@ export class NewsManager extends BaseManager {
     }
     get(id) {
         return __awaiter(this, void 0, void 0, function* () {
+            const cached = this.getCache(id);
+            if (cached != null) {
+                return cached;
+            }
             const { main: { client: { options: { baseUrl }, api } } } = this;
             const url = new URL(baseUrl);
             url.pathname = `/n/${id}`;

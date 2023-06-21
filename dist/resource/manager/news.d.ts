@@ -1,9 +1,10 @@
+import { type ClientEventEmitter } from '../../Wrapper.js';
 import { NewsResource } from '../data/news.js';
 import type { PictureResource } from '../data/picture.js';
 import type { MainManager } from '../main.js';
 import { BaseManager } from './base.js';
 export declare class NewsManager extends BaseManager<NewsResource, NewsManager> {
-    constructor(main: MainManager);
+    constructor(main: MainManager, events: ClientEventEmitter);
     list(offset?: number, length?: number): Promise<NewsResource[]>;
     get(id: string): Promise<NewsResource | null>;
     create(title: string, thumbnail: PictureResource, contents: Array<NewsTextContent | NewsImageContent | NewsLinkContent>): Promise<NewsResource>;

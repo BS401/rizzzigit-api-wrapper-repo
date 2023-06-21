@@ -12,4 +12,6 @@ export class FileResource extends BaseResource<FileResource, FileManager> {
 
   public get size (): number { return this.#data.size as number }
   public get rawUrl (): URL { return new URL(`${this.manager.main.client.options.baseUrl}/f/${this.id}/raw`) }
+
+  public async delete (): Promise<void> { await this.manager.delete(this) }
 }

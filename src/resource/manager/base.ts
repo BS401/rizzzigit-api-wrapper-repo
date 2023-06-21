@@ -1,14 +1,26 @@
 import type { BaseResource } from '../data/base.js'
 import type { MainManager } from '../main.js'
+import type { ClientEventEmitter } from '../../Wrapper.js'
 
 export abstract class BaseManager<R extends BaseResource<R, M>, M extends BaseManager<R, M>> {
-  public constructor (main: MainManager, name: string) {
+  public constructor (main: MainManager, events: ClientEventEmitter, name: string) {
     this.#main = main
     this.#name = name
+
+    this.#cache = {}
   }
 
   #main: MainManager
   #name: string
+  #cache: Record<string, R>
+
+  public getCache (id: string): R | null {
+    return this.#cache[id]
+  }
+
+  public setCache (id: string, resource: R): R {
+    return (this.#cache[id] = resource)
+  }
 
   protected generateURL (path: string[], getQuery?: Record<string, unknown>): URL {
     const url = new URL(`${this.#main.client.options.baseUrl}`)

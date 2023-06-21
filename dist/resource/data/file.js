@@ -1,5 +1,5 @@
 var _FileResource_data;
-import { __classPrivateFieldGet, __classPrivateFieldSet } from "tslib";
+import { __awaiter, __classPrivateFieldGet, __classPrivateFieldSet } from "tslib";
 import { BaseResource } from './base.js';
 export class FileResource extends BaseResource {
     constructor(manager, id, data) {
@@ -9,5 +9,8 @@ export class FileResource extends BaseResource {
     }
     get size() { return __classPrivateFieldGet(this, _FileResource_data, "f").size; }
     get rawUrl() { return new URL(`${this.manager.main.client.options.baseUrl}/f/${this.id}/raw`); }
+    delete() {
+        return __awaiter(this, void 0, void 0, function* () { yield this.manager.delete(this); });
+    }
 }
 _FileResource_data = new WeakMap();
