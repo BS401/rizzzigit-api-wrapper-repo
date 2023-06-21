@@ -40,7 +40,7 @@ export class Client {
 
   public constructor (options?: Partial<ClientOptions>) {
     this.#options = {
-      baseUrl: 'http://localhost:8081/',
+      baseUrl: 'https://twice-fan-page-api.rizzzigit.repl.co',
 
       ...options
     }
