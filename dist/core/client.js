@@ -30,7 +30,7 @@ export class Client {
         _Client_on.set(this, void 0);
         _Client_once.set(this, void 0);
         _Client_off.set(this, void 0);
-        __classPrivateFieldSet(this, _Client_options, Object.assign({ baseUrl: 'https://twice-fan-page-api.rizzzigit.repl.co' }, options), "f");
+        __classPrivateFieldSet(this, _Client_options, Object.assign({ baseUrl: 'https://twice-api.cjoma.repl.co' }, options), "f");
         __classPrivateFieldSet(this, _Client_api, new API(this, __classPrivateFieldGet(this, _Client_options, "f").storage), "f");
         __classPrivateFieldSet(this, _Client_events, new EventEmitter(), "f");
         __classPrivateFieldSet(this, _Client_resources, new MainManager(this, __classPrivateFieldGet(this, _Client_events, "f")), "f");
