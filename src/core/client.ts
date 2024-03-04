@@ -40,7 +40,7 @@ export class Client {
 
   public constructor (options?: Partial<ClientOptions>) {
     this.#options = {
-      baseUrl: 'https://twice-api.cjoma.repl.co',
+      baseUrl: 'https://a7038158-45a1-46f8-96b0-9c55fee5b418-00-332yp18axpa2x.spock.replit.dev',
 
       ...options
     }
